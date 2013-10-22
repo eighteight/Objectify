@@ -1,4 +1,4 @@
-CONTAINER Octsplinify
+CONTAINER Octobjectify
 {
 	NAME Octobjectify;
 	INCLUDE Obase;
