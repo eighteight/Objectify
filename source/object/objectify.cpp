@@ -369,7 +369,7 @@ Error:
 }
 
 
-Bool RegisterSplinify(void)
+Bool RegisterObjectify(void)
 {
 	return RegisterObjectPlugin(ID_OBJECTIFY,GeLoadString(IDS_OBJECTIFY),OBJECT_GENERATOR|OBJECT_INPUT|OBJECT_ISSPLINE|OBJECT_CALL_ADDEXECUTION,Objectify::Alloc,"Octobjectify",AutoBitmap("tsp.tif"),0);
 }

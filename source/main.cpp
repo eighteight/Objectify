@@ -13,12 +13,12 @@
 #include "c4d.h"
 #include <string.h>
 
-Bool RegisterSplinify(void);
+Bool RegisterObjectify(void);
 
 
 Bool PluginStart(void)
 {
-	if (!RegisterSplinify()) return FALSE;
+	if (!RegisterObjectify()) return FALSE;
 
 	return TRUE;
 }
