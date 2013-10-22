@@ -1,3 +1,9 @@
+#include <pcl/point_types.h>
+#include <pcl/kdtree/kdtree_flann.h>
+//#include <pcl/kdtree/kdtree_flann.h>
+//#include <pcl/features/normal_3d.h>
+//#include <pcl/surface/gp3.h>
+
 #include "c4d.h"
 #include "c4d_symbols.h"
 #include "c4d_tools.h"
@@ -7,6 +13,10 @@
 #include "kd_tree.h"
 #include <vector>
 #include <string>
+
+
+
+
 
 #include <iostream>
 
