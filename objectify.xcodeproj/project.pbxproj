@@ -10,11 +10,13 @@
 		AFA997F8179B7D5500546EC9 /* kd_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA997F2179B7D5500546EC9 /* kd_tree.cpp */; };
 		AFA997F9179B7D5500546EC9 /* kd_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = AFA997F3179B7D5500546EC9 /* kd_tree.h */; };
 		AFA997FA179B7D5500546EC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA997F4179B7D5500546EC9 /* main.cpp */; };
-		AFA997FC179B7D5500546EC9 /* objectify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA997F7179B7D5500546EC9 /* objectify.cpp */; };
+		AFA997FC179B7D5500546EC9 /* objectify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA997F7179B7D5500546EC9 /* objectify.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
 		E6AAC5A017C547E0005ADAA3 /* c4d_strings.str in Resources */ = {isa = PBXBuildFile; fileRef = E6AAC59D17C547E0005ADAA3 /* c4d_strings.str */; };
 		E6AAC5A117C547E0005ADAA3 /* octobjectify.str in Resources */ = {isa = PBXBuildFile; fileRef = E6AAC59F17C547E0005ADAA3 /* octobjectify.str */; };
 		E6AAC5A517C547F2005ADAA3 /* octobjectify.h in Headers */ = {isa = PBXBuildFile; fileRef = E6AAC5A317C547F2005ADAA3 /* octobjectify.h */; };
 		E6AAC5A617C547F2005ADAA3 /* octobjectify.res in Resources */ = {isa = PBXBuildFile; fileRef = E6AAC5A417C547F2005ADAA3 /* octobjectify.res */; };
+		E6D950661816DAA700806311 /* Triangulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6D950641816DAA700806311 /* Triangulator.cpp */; };
+		E6D950671816DAA700806311 /* Triangulator.h in Headers */ = {isa = PBXBuildFile; fileRef = E6D950651816DAA700806311 /* Triangulator.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -65,6 +67,8 @@
 		E6AAC59F17C547E0005ADAA3 /* octobjectify.str */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = octobjectify.str; sourceTree = "<group>"; };
 		E6AAC5A317C547F2005ADAA3 /* octobjectify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = octobjectify.h; sourceTree = "<group>"; };
 		E6AAC5A417C547F2005ADAA3 /* octobjectify.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = octobjectify.res; sourceTree = "<group>"; };
+		E6D950641816DAA700806311 /* Triangulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangulator.cpp; sourceTree = "<group>"; };
+		E6D950651816DAA700806311 /* Triangulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangulator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 				AFA997F3179B7D5500546EC9 /* kd_tree.h */,
 				AFA997F4179B7D5500546EC9 /* main.cpp */,
 				AFA997F5179B7D5500546EC9 /* object */,
+				E6D950641816DAA700806311 /* Triangulator.cpp */,
+				E6D950651816DAA700806311 /* Triangulator.h */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -92,8 +98,8 @@
 		657FF105085913EC00750201 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				657FF109085913EC00750201 /* lib_api_debug.a */,
-				26EDA6240FA303CF00050D59 /* lib_api_stdmem_debug.a */,
+				657FF109085913EC00750201 /* lib_api_release.a */,
+				26EDA6240FA303CF00050D59 /* lib_api_stdmem_release.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +178,7 @@
 			files = (
 				AFA997F9179B7D5500546EC9 /* kd_tree.h in Headers */,
 				E6AAC5A517C547F2005ADAA3 /* octobjectify.h in Headers */,
+				E6D950671816DAA700806311 /* Triangulator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,16 +235,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		26EDA6240FA303CF00050D59 /* lib_api_stdmem_debug.a */ = {
+		26EDA6240FA303CF00050D59 /* lib_api_stdmem_release.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
+			name = lib_api_stdmem_release.a;
 			path = lib_api_stdmem_debug.a;
 			remoteRef = 26EDA6230FA303CF00050D59 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		657FF109085913EC00750201 /* lib_api_debug.a */ = {
+		657FF109085913EC00750201 /* lib_api_release.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
+			name = lib_api_release.a;
 			path = lib_api_debug.a;
 			remoteRef = 657FF108085913EC00750201 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -275,6 +284,7 @@
 				AFA997F8179B7D5500546EC9 /* kd_tree.cpp in Sources */,
 				AFA997FA179B7D5500546EC9 /* main.cpp in Sources */,
 				AFA997FC179B7D5500546EC9 /* objectify.cpp in Sources */,
+				E6D950661816DAA700806311 /* Triangulator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +302,7 @@
 		65450B67085517D80099394F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				PRODUCT_NAME = objectify;
 				SKIP_INSTALL = NO;
@@ -302,6 +313,7 @@
 		65450B68085517D80099394F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				PRODUCT_NAME = objectify;
 				SKIP_INSTALL = NO;
@@ -318,8 +330,21 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/eigen3,
 					"/usr/local/include/pcl-1.7",
+					"/usr/local/include/vtk-5.10/",
 				);
-				OTHER_LDFLAGS = "$(C4D_ROOTDIR)/resource/_api_lib/lib_api_debug.a";
+				OTHER_LDFLAGS = (
+					"$(C4D_ROOTDIR)/resource/_api_lib/lib_api_debug.a",
+					"/usr/local/lib/libboost_system-mt.dylib",
+					/usr/local/lib/libpcl_common.1.7.0.dylib,
+					/usr/local/lib/libpcl_io.1.7.0.dylib,
+					/usr/local/lib/libpcl_kdtree.1.7.0.dylib,
+					/usr/local/lib/libpcl_search.1.7.0.dylib,
+					/usr/local/lib/libpcl_sample_consensus.1.7.0.dylib,
+					/usr/local/lib/libpcl_filters.1.7.0.dylib,
+					/usr/local/lib/libpcl_features.1.7.0.dylib,
+					/usr/local/lib/libpcl_segmentation.1.7.0.dylib,
+					/usr/local/lib/libpcl_surface.1.7.0.dylib,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = cinema4dsdk;
 			};
@@ -334,8 +359,15 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/eigen3,
 					"/usr/local/include/pcl-1.7",
+					"/usr/local/include/vtk-5.10/",
 				);
-				OTHER_LDFLAGS = "$(C4D_ROOTDIR)/resource/_api_lib/lib_api_release.a";
+				OTHER_LDFLAGS = (
+					"$(C4D_ROOTDIR)/resource/_api_lib/lib_api_release.a",
+					"/usr/local/lib/libboost_system-mt.dylib",
+					/usr/local/lib/libpcl_common.1.7.0.dylib,
+					/usr/local/lib/libpcl_io.1.7.0.dylib,
+					/usr/local/lib/libpcl_kdtree.1.7.0.dylib,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = cinema4dsdk;
 			};

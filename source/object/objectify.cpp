@@ -1,8 +1,3 @@
-#include <pcl/point_types.h>
-#include <pcl/kdtree/kdtree_flann.h>
-//#include <pcl/kdtree/kdtree_flann.h>
-//#include <pcl/features/normal_3d.h>
-//#include <pcl/surface/gp3.h>
 
 #include "c4d.h"
 #include "c4d_symbols.h"
@@ -13,15 +8,14 @@
 #include "kd_tree.h"
 #include <vector>
 #include <string>
-
-
-
-
-
 #include <iostream>
-
+#include "Triangulator.h"
 // unique ID obtained from www.plugincafe.com
 #define ID_OBJECTIFY 1031255
+
+//class Triangulator{
+//    int hail;
+//};
 
 typedef std::pair<SplineObject*,Real> SplinePair;
 bool comparator ( const SplinePair& l, const SplinePair& r){
@@ -37,6 +31,7 @@ class Objectify : public ObjectData
         GeDynamicArray<GeDynamicArray<Vector> > splineAtPoint;
         LONG prvsFrame = 0, oldFrame;
         SplineObject* ComputeSpline(BaseThread* bt, GeDynamicArray<BaseObject*> &children, Real maxSeg, LONG delta, LONG splinePercentage, LONG startChild, GeDynamicArray<GeDynamicArray<Vector> > &chldPoints, GeDynamicArray<KDNode*> &trees, LONG maxPoints,  LONG child_cnt);
+        Triangulator tri;
     
 	public:
 		virtual SplineObject* GetContour(BaseObject *op, BaseDocument *doc, Real lod, BaseThread *bt);
@@ -80,6 +75,9 @@ Bool Objectify::Init(GeListNode *node)
     i = 0;
     param.SetLong(i);
     op->SetParameter(id, param, DESCFLAGS_SET_0);
+    
+    //tri = new Triangulator();
+    tri.triangulate();
     return TRUE;
 }
 
