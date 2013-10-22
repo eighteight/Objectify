@@ -17,6 +17,8 @@
 #include <pcl/ros/conversions.h>
 #include <iostream>
 #include "Triangulator.h"
+
+
 void Triangulator::triangulate(){
     // Load input file into a PointCloud<T> with an appropriate type
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
