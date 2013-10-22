@@ -3,5 +3,5 @@
 
 STRINGTABLE
 {
-	IDS_SPLINIFY				"Splinify";
+	IDS_OBJECTIFY				"Objectify";
 }

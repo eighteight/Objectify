@@ -17,6 +17,7 @@
 		E6AAC5A617C547F2005ADAA3 /* octobjectify.res in Resources */ = {isa = PBXBuildFile; fileRef = E6AAC5A417C547F2005ADAA3 /* octobjectify.res */; };
 		E6D950661816DAA700806311 /* Triangulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6D950641816DAA700806311 /* Triangulator.cpp */; };
 		E6D950671816DAA700806311 /* Triangulator.h in Headers */ = {isa = PBXBuildFile; fileRef = E6D950651816DAA700806311 /* Triangulator.h */; };
+		E6D950711816FB9F00806311 /* c4d_symbols.h in Headers */ = {isa = PBXBuildFile; fileRef = E6D950701816FB9F00806311 /* c4d_symbols.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -69,6 +70,7 @@
 		E6AAC5A417C547F2005ADAA3 /* octobjectify.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = octobjectify.res; sourceTree = "<group>"; };
 		E6D950641816DAA700806311 /* Triangulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangulator.cpp; sourceTree = "<group>"; };
 		E6D950651816DAA700806311 /* Triangulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangulator.h; sourceTree = "<group>"; };
+		E6D950701816FB9F00806311 /* c4d_symbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = c4d_symbols.h; path = res/c4d_symbols.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		65636BD708E5922100FBAB34 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				E6D950701816FB9F00806311 /* c4d_symbols.h */,
 				AFA997F2179B7D5500546EC9 /* kd_tree.cpp */,
 				AFA997F3179B7D5500546EC9 /* kd_tree.h */,
 				AFA997F4179B7D5500546EC9 /* main.cpp */,
@@ -179,6 +182,7 @@
 				AFA997F9179B7D5500546EC9 /* kd_tree.h in Headers */,
 				E6AAC5A517C547F2005ADAA3 /* octobjectify.h in Headers */,
 				E6D950671816DAA700806311 /* Triangulator.h in Headers */,
+				E6D950711816FB9F00806311 /* c4d_symbols.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

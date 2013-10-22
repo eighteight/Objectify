@@ -1,6 +1,6 @@
 STRINGTABLE Octsplinify
 {
-	Octsplinify			"Splinify Object";
+	Octobjectify			"Objectify Object";
 
 	CTTSPOBJECT_MAXSEG		"Maximum Segment Length";
     CTT_OBJECT_LINK         "Sequence parent";

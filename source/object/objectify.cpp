@@ -13,10 +13,6 @@
 // unique ID obtained from www.plugincafe.com
 #define ID_OBJECTIFY 1031255
 
-//class Triangulator{
-//    int hail;
-//};
-
 typedef std::pair<SplineObject*,Real> SplinePair;
 bool comparator ( const SplinePair& l, const SplinePair& r){
     return l.first < r.first;
@@ -375,5 +371,5 @@ Error:
 
 Bool RegisterSplinify(void)
 {
-	return RegisterObjectPlugin(ID_OBJECTIFY,GeLoadString(IDS_SPLINIFY),OBJECT_GENERATOR|OBJECT_INPUT|OBJECT_ISSPLINE|OBJECT_CALL_ADDEXECUTION,Objectify::Alloc,"Octsplinify",AutoBitmap("tsp.tif"),0);
+	return RegisterObjectPlugin(ID_OBJECTIFY,GeLoadString(IDS_OBJECTIFY),OBJECT_GENERATOR|OBJECT_INPUT|OBJECT_ISSPLINE|OBJECT_CALL_ADDEXECUTION,Objectify::Alloc,"Octobjectify",AutoBitmap("tsp.tif"),0);
 }

@@ -1,6 +1,6 @@
 CONTAINER Octsplinify
 {
-	NAME Octsplinify;
+	NAME Octobjectify;
 	INCLUDE Obase;
 
 	GROUP ID_OBJECTPROPERTIES
