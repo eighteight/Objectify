@@ -308,6 +308,20 @@
 			buildSettings = {
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				OTHER_LDFLAGS = (
+					"$(C4D_ROOTDIR)/resource/_api_lib/lib_api_debug.a",
+					"/usr/local/lib/libboost_system-mt.dylib",
+					/usr/local/lib/libpcl_common.1.7.0.dylib,
+					/usr/local/lib/libpcl_io.1.7.0.dylib,
+					/usr/local/lib/libpcl_kdtree.1.7.0.dylib,
+					/usr/local/lib/libpcl_search.1.7.0.dylib,
+					/usr/local/lib/libpcl_sample_consensus.1.7.0.dylib,
+					/usr/local/lib/libpcl_filters.1.7.0.dylib,
+					/usr/local/lib/libpcl_features.1.7.0.dylib,
+					/usr/local/lib/libpcl_segmentation.1.7.0.dylib,
+					/usr/local/lib/libpcl_surface.1.7.0.dylib,
+					/usr/local/lib/libpcl_visualization.dylib,
+				);
 				PRODUCT_NAME = objectify;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "$(C4D_ROOTDIR)/resource/_api/** $(C4D_ROOTDIR)/resource/res/** res/** $(C4D_ROOTDIR)/resource/modules/objects/res/description $(C4D_ROOTDIR)/modules/advanced\\ render/advanced\\ render/res/description $(C4D_ROOTDIR)/modules/thinking\\ particles/thinking\\ particles/res/description $(C4D_ROOTDIR)/modules/dynamics/res/description $(C4D_ROOTDIR)/resource/modules/modeling/res/description /usr/local/include/pcl-1.7/";

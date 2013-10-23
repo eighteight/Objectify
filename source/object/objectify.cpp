@@ -125,7 +125,7 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
         point.push_back(p.x);
         point.push_back(p.y);
         point.push_back(p.z);
-        points.push_back(std::vector<float>());
+        points.push_back(point);
     }
     
     tri.triangulate(points);

@@ -15,5 +15,6 @@ public:
     Triangulator(){};
     ~Triangulator(){};
     void triangulate(std::vector<std::vector<float> >&);
+
 };
 #endif /* defined(__objectify__Triangulator__) */
