@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "65E51692083D10D0005BFD9A"
-               BuildableName = "splinify.dylib"
+               BuildableName = "objectify.dylib"
                BlueprintName = "objectify"
                ReferencedContainer = "container:objectify.xcodeproj">
             </BuildableReference>

@@ -19,19 +19,28 @@
 #include "Triangulator.h"
 
 
-void Triangulator::triangulate(){
+void Triangulator::triangulate(std::vector<std::vector<float> >& points){
     // Load input file into a PointCloud<T> with an appropriate type
-    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
-    pcl::PCLPointCloud2 cloud_blob;
+
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud;
+    size_t zeros = 0;
+    size_t nonzeros = 0;
     
-    pcl::PolygonMesh mesh;
-    pcl::io::loadPolygonFile("cube.obj",mesh);
+    cloud->width  = points.size();
+    cloud->height = 1;
+    cloud->is_dense = false;
+    cloud->points.resize (points.size());
     
-    pcl::fromPCLPointCloud2(mesh.cloud, *cloud);
-    
-    //    pcl::io::loadPCDFile ("bun0.pcd", cloud_blob);
-    //    pcl::fromPCLPointCloud2 (cloud_blob, *cloud);
-    //* the data should be available in cloud
+    for (size_t i = 0; i < cloud->points.size (); ++i)
+    {
+        pcl::PointXYZ& pt = cloud->points[i];
+        pt.z = points[i][0];
+        pt.x = points[i][1];
+        pt.y = points[i][2];
+//        pt.r = 1.0;
+//        pt.g = 0.0;
+//        pt.b = 0.0;
+    }
     
     // Normal estimation*
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
