@@ -12,9 +12,11 @@
 #include <pcl/features/normal_3d.h>
 #include <pcl/surface/gp3.h>
 #include <boost/make_shared.hpp>
+#include <pcl/ros/conversions.h>
 #include <iostream>
 #include "Triangulator.h"
-int user_data;
+
+using namespace pcl;
 
 //    boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer1 (new pcl::visualization::PCLVisualizer ("3D Viewer"));
 
@@ -23,6 +25,7 @@ int user_data;
 
     
 using namespace boost;
+using namespace pcl;
 
 void Triangulator::triangulate(std::vector<std::vector<float> >& points){
 
@@ -65,26 +68,40 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points){
     // Initialize objects
     pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
 
-    pcl::PolygonMesh::Ptr triangles = make_shared<pcl::PolygonMesh>();
 
     //
 //    // Set the maximum distance between connected points (maximum edge length)
     gp3.setSearchRadius (0.025);
-        return;    
+
     // Set typical values for the parameters
     gp3.setMu (2.5);
+
     gp3.setMaximumNearestNeighbors (100);
+
     gp3.setMaximumSurfaceAngle(M_PI/4); // 45 degrees
     gp3.setMinimumAngle(M_PI/18); // 10 degrees
     gp3.setMaximumAngle(2*M_PI/3); // 120 degrees
     gp3.setNormalConsistency(false);
+
 //
 //    // Get result
     gp3.setInputCloud (cloud_with_normals);
+
     gp3.setSearchMethod (tree2);
-    gp3.reconstruct (*triangles);
+
+    pcl::PolygonMesh triangles;
+    gp3.reconstruct (triangles);
+
+    PointCloud<PointXYZ> out;
+    fromPCLPointCloud2(triangles.cloud, out);
+    int tri_i = 0;
+    int vertex_i = 0;
+    std::cout<<triangles.polygons.size()<<" "<<std::endl;
+    return;
+
+    out.points[ triangles.polygons[tri_i].vertices[vertex_i] ];
     
-    std::cout<<*triangles<<std::endl;
+    std::cout<<triangles<<std::endl;
     // Additional vertex information
     std::vector<int> parts = gp3.getPartIDs();
     std::vector<int> states = gp3.getPointStates();
@@ -96,6 +113,6 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points){
 //    viewer.addPolygonMesh(triangles, "triangles");
 //      viewer.spin ();
 //    pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZ> rgb (colored_cloud);
-    
+
     
 }
