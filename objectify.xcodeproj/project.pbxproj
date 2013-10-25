@@ -15,6 +15,7 @@
 		E6AAC5A117C547E0005ADAA3 /* octobjectify.str in Resources */ = {isa = PBXBuildFile; fileRef = E6AAC59F17C547E0005ADAA3 /* octobjectify.str */; };
 		E6AAC5A517C547F2005ADAA3 /* octobjectify.h in Headers */ = {isa = PBXBuildFile; fileRef = E6AAC5A317C547F2005ADAA3 /* octobjectify.h */; };
 		E6AAC5A617C547F2005ADAA3 /* octobjectify.res in Resources */ = {isa = PBXBuildFile; fileRef = E6AAC5A417C547F2005ADAA3 /* octobjectify.res */; };
+		E6D14BDF181AD5F800DB1D23 /* bun0.obj in Resources */ = {isa = PBXBuildFile; fileRef = E6D14BDE181AD5F800DB1D23 /* bun0.obj */; };
 		E6D950661816DAA700806311 /* Triangulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6D950641816DAA700806311 /* Triangulator.cpp */; };
 		E6D950671816DAA700806311 /* Triangulator.h in Headers */ = {isa = PBXBuildFile; fileRef = E6D950651816DAA700806311 /* Triangulator.h */; };
 		E6D950711816FB9F00806311 /* c4d_symbols.h in Headers */ = {isa = PBXBuildFile; fileRef = E6D950701816FB9F00806311 /* c4d_symbols.h */; };
@@ -69,6 +70,7 @@
 		E6AAC59F17C547E0005ADAA3 /* octobjectify.str */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = octobjectify.str; sourceTree = "<group>"; };
 		E6AAC5A317C547F2005ADAA3 /* octobjectify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = octobjectify.h; sourceTree = "<group>"; };
 		E6AAC5A417C547F2005ADAA3 /* octobjectify.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = octobjectify.res; sourceTree = "<group>"; };
+		E6D14BDE181AD5F800DB1D23 /* bun0.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bun0.obj; sourceTree = "<group>"; };
 		E6D950641816DAA700806311 /* Triangulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangulator.cpp; sourceTree = "<group>"; };
 		E6D950651816DAA700806311 /* Triangulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangulator.h; sourceTree = "<group>"; };
 		E6D950701816FB9F00806311 /* c4d_symbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = c4d_symbols.h; path = res/c4d_symbols.h; sourceTree = SOURCE_ROOT; };
@@ -112,6 +114,7 @@
 		65E51686083D10D0005BFD9A = {
 			isa = PBXGroup;
 			children = (
+				E6D14BDE181AD5F800DB1D23 /* bun0.obj */,
 				E6AAC5A217C547F2005ADAA3 /* description */,
 				E6AAC59C17C547E0005ADAA3 /* strings_us */,
 				65636BD708E5922100FBAB34 /* source */,
@@ -268,6 +271,7 @@
 				E6AAC5A017C547E0005ADAA3 /* c4d_strings.str in Resources */,
 				E6AAC5A117C547E0005ADAA3 /* octobjectify.str in Resources */,
 				E6AAC5A617C547F2005ADAA3 /* octobjectify.res in Resources */,
+				E6D14BDF181AD5F800DB1D23 /* bun0.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

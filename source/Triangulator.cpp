@@ -43,7 +43,7 @@ vector<Triangle> Triangulator::triangulate(std::vector<std::vector<float> >& poi
     }
     
 
-    pcl::io::loadPolygonFile("/Users/eight/Documents/examples/pcl_fast_triangulation_unordered_point_clouds/build/bun0.obj",mesh);
+    pcl::io::loadPolygonFile("plugins/Objectify/bun0.obj",mesh);
     
     pcl::fromPCLPointCloud2(mesh.cloud, *cloud);
     
