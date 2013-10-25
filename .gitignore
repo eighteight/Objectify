@@ -2,3 +2,6 @@
 objectify.dylib
 objectify.xcodeproj/xcuserdata/vgusev.xcuserdatad/xcschemes/splinify.xcscheme
 objectify.xcodeproj/xcuserdata/eight.xcuserdatad/xcschemes/objectify.xcscheme
+source/.DS_Store
+objectify.xcodeproj/project.xcworkspace/xcshareddata/objectify.xccheckout
+objectify.xcodeproj/xcuserdata/vgusev.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist

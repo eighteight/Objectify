@@ -59,14 +59,36 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "source/Triangulator.cpp"
-         timestampString = "404284206.540491"
+         filePath = "source/object/objectify.cpp"
+         timestampString = "404367257.920537"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "87"
-         endingLineNumber = "87"
-         landmarkName = "Triangulator::triangulate(std::vector&lt;std::vector&lt;float&gt; &gt;&amp; points)"
+         startingLineNumber = "146"
+         endingLineNumber = "146"
+         landmarkName = "Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "source/object/objectify.cpp"
+         timestampString = "404367252.475552"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "141"
+         endingLineNumber = "141"
+         landmarkName = "Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
+   <ExceptionBreakpoints>
+      <ExceptionBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         scope = "0"
+         stopOnStyle = "0">
+      </ExceptionBreakpoint>
+   </ExceptionBreakpoints>
 </Bucket>

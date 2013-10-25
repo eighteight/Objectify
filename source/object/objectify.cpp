@@ -115,10 +115,8 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     Bool dirty = op->CheckCache(hh) || op->IsDirty(DIRTYFLAGS_DATA);
 
     AutoAlloc<SplineHelp> splineHelp;
-    LONG sc = spline->GetSegmentCount();
-    LONG pInd = 0;
     
-    std::vector<std::vector<float> > points;
+    vector<vector<float> > points;
     for (LONG i = 0; i < spline->GetSegmentCount(); i++){
         Vector p = spline->GetSplinePoint(0.5, i);
         vector<float> point;
@@ -128,9 +126,24 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
         points.push_back(point);
     }
     
-    tri.triangulate(points);
+    vector<Triangle> triangles = tri.triangulate(points);
+
+    PolygonObject* myPoly = PolygonObject::Alloc( triangles.size()*3,triangles.size());
+    Vector* ppoints = myPoly->GetPointW();
+    for (int t = 0; t < triangles.size(); t++) {
+        Triangle tr = triangles[t];
+        std::cout << tr << std::endl;
+        ppoints[t] = Vector(tr.a[0],tr.a[1],tr.a[2]);
+        ppoints[t+1] = Vector(tr.b[0],tr.b[1],tr.b[2]);
+        ppoints[t+2] = Vector(tr.c[0],tr.c[1],tr.c[2]);
+    }
     
-    
+    int zz = myPoly->GetPolygonCount();
+
+    for(LONG i=0; i < myPoly->GetPolygonCount()-1; i++){
+        myPoly->GetPolygonW()[i] = CPolygon(i,i+1,i+2);
+    }
+    return myPoly;
     
 //    for v in xrange(0,spline.GetSegmentCount(),1):
 //        if v+2 >= spline.GetSegmentCount():
@@ -173,16 +186,7 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     isCalculated = TRUE;
     StatusSetBar(0);
     StatusSetText("Collecting Points");
-    
-    LONG child_cnt = 10;
-    GeDynamicArray<KDNode*> trees(child_cnt);
-    GeDynamicArray<GeDynamicArray<Vector> > chldPoints(child_cnt);
-    
-    rng.Init(1244);
-    
-    StatusSetBar(5);
-    StatusSetText("Connecting Points");
-    
+
     Real distMin = MAXREALr;
     Real distMax = 0.;
     
@@ -190,11 +194,6 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     
     
     SplineObject* emptySpline = SplineObject::Alloc(0, SPLINETYPE_LINEAR);
-    Real avSplineSize = 0;
-    VLONG pcnt = 0;
-
-    
-    
     ModelingCommandData mcd;
     
     mcd.doc = doc;
@@ -218,7 +217,7 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     GeDynamicArray<LONG> segments;
     SplineObject        *pp= SplineObject::Alloc(0,SPLINETYPE_LINEAR);
     if (!pp) return NULL;
-    pp->ResizeObject(pcnt,segments.GetCount());
+    pp->ResizeObject(100,segments.GetCount());
     
     Segment* seg = pp->GetSegmentW();
     for(LONG i=0;i<segments.GetCount();i++){

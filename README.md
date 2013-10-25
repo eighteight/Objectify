@@ -1,8 +1,11 @@
-"Splinify" plugin for CINEMA 4D
+"Objectify" plugin for CINEMA 4D
 =============
+Very much work in progress!
 
-#[Download](https://github.com/eighteight/Splinify/archive/master.zip)
-![Screenshot](https://raw.github.com/eighteight/Splinify/master/screenshot.png)
+This an attempt to integrate pcl pointcloud library into Cinema 4D. Currently the intent is to take a bunch of points and run a fast surface reconstruction from pcl
+
+#[Download](https://github.com/eighteight/Objectify/archive/master.zip)
+![Screenshot](https://raw.github.com/eighteight/Objectify/master/screenshot.png)
 ###[Video](https://vimeo.com) to follow
 
 ##Compability
@@ -13,15 +16,10 @@ Unzip the folder to your CINEMA/plugins/ folder and restart CINEMA.
 
 
 ##Usage
-The plugin contains two objects that can be found under the ../plugins->Splinify menu entry.
-###Splinify
-A generator (place objects under it) that takes two objects and connects their points trying to minimize the overall distance.
+Drop a multisegmented spline into the Object field -- it should reconstruct the surface from the cross section of these segements
 
 
 ##Settings
-###Splinify
-* Maximum Segment Length
-  * Delete segments longer than this. Useful for getting rid of occasional lines connecting different parts of the model.
-* Relative
-  * When checked the _Maximum Segment Length_ is a multiplier of neighboring points, otherwise it's an absolute length.
+###Objectify
+
 

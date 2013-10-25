@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -64,6 +64,7 @@
 		AFA997F3179B7D5500546EC9 /* kd_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kd_tree.h; sourceTree = "<group>"; };
 		AFA997F4179B7D5500546EC9 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AFA997F7179B7D5500546EC9 /* objectify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objectify.cpp; sourceTree = "<group>"; };
+		AFF450701819D60800FE1750 /* Triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
 		E6AAC59D17C547E0005ADAA3 /* c4d_strings.str */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = c4d_strings.str; sourceTree = "<group>"; };
 		E6AAC59F17C547E0005ADAA3 /* octobjectify.str */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = octobjectify.str; sourceTree = "<group>"; };
 		E6AAC5A317C547F2005ADAA3 /* octobjectify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = octobjectify.h; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 				AFA997F5179B7D5500546EC9 /* object */,
 				E6D950641816DAA700806311 /* Triangulator.cpp */,
 				E6D950651816DAA700806311 /* Triangulator.h */,
+				AFF450701819D60800FE1750 /* Triangle.h */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -215,8 +217,11 @@
 /* Begin PBXProject section */
 		65E5168A083D10D0005BFD9A /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
 			buildConfigurationList = 65450B6A085517D90099394F /* Build configuration list for PBXProject "objectify" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -307,6 +312,7 @@
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -338,6 +344,7 @@
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -365,6 +372,11 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				C4D_ROOTDIR = ../..;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/eigen3,
 					"/usr/local/include/pcl-1.7",
@@ -384,7 +396,6 @@
 					/usr/local/lib/libpcl_segmentation.1.7.0.dylib,
 					/usr/local/lib/libpcl_surface.1.7.0.dylib,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = cinema4dsdk;
 				SDKROOT = macosx;
 				"SDKROOT[arch=i386]" = macosx;
@@ -397,6 +408,11 @@
 			buildSettings = {
 				C4D_ROOTDIR = ../..;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/eigen3,
 					"/usr/local/include/pcl-1.7",
@@ -410,7 +426,6 @@
 					/usr/local/lib/libpcl_io.1.7.0.dylib,
 					/usr/local/lib/libpcl_kdtree.1.7.0.dylib,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = cinema4dsdk;
 				SDKROOT = macosx;
 				"SDKROOT[arch=i386]" = macosx;

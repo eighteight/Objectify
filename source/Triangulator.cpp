@@ -12,22 +12,20 @@
 #include <pcl/features/normal_3d.h>
 #include <pcl/surface/gp3.h>
 #include <boost/make_shared.hpp>
-#include <pcl/ros/conversions.h>
+
+#include <pcl/io/vtk_lib_io.h>
 #include <iostream>
 #include "Triangulator.h"
 
-using namespace pcl;
-
-//    boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer1 (new pcl::visualization::PCLVisualizer ("3D Viewer"));
-
-//pcl::visualization::PCLVisualizer viewer ("Test: NURBS surface fitting");
-
-
-    
 using namespace boost;
 using namespace pcl;
+using namespace std;
 
-void Triangulator::triangulate(std::vector<std::vector<float> >& points){
+    pcl::PolygonMesh triangles;
+    pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
+    pcl::PolygonMesh mesh;
+
+vector<Triangle> Triangulator::triangulate(std::vector<std::vector<float> >& points){
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud = boost::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
     
@@ -43,6 +41,11 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points){
         pt.x = points[i][1];
         pt.y = points[i][2];
     }
+    
+
+    pcl::io::loadPolygonFile("/Users/eight/Documents/examples/pcl_fast_triangulation_unordered_point_clouds/build/bun0.obj",mesh);
+    
+    pcl::fromPCLPointCloud2(mesh.cloud, *cloud);
     
     // Normal estimation*
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
@@ -66,7 +69,7 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points){
     tree2->setInputCloud (cloud_with_normals);
 
     // Initialize objects
-    pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
+
 
 
     //
@@ -89,17 +92,36 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points){
 
     gp3.setSearchMethod (tree2);
 
-    pcl::PolygonMesh triangles;
+
     gp3.reconstruct (triangles);
 
     PointCloud<PointXYZ> out;
     fromPCLPointCloud2(triangles.cloud, out);
-    int tri_i = 0;
-    int vertex_i = 0;
-    std::cout<<triangles.polygons.size()<<" "<<std::endl;
-    return;
+    
+    vector<Triangle> ret(triangles.polygons.size());
+    
+    int indx;
+    for (int t = 0; t < triangles.polygons.size(); t++){
+        Triangle tr;
+        
+        indx =  triangles.polygons[t].vertices[0];
+        tr.a[0] = out.points[indx].x;
+        tr.a[1] = out.points[indx].y;
+        tr.a[2] = out.points[indx].z;
+        
+        indx =  triangles.polygons[t].vertices[1];
+        tr.b[0] = out.points[indx].x;
+        tr.b[1] = out.points[indx].y;
+        tr.b[2] = out.points[indx].z;
+        
+        indx =  triangles.polygons[t].vertices[2];
+        tr.c[0] = out.points[indx].x;
+        tr.c[1] = out.points[indx].y;
+        tr.c[2] = out.points[indx].z;
 
-    out.points[ triangles.polygons[tri_i].vertices[vertex_i] ];
+        ret.push_back(tr);
+    }
+    return ret;
     
     std::cout<<triangles<<std::endl;
     // Additional vertex information
