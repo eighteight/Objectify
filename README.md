@@ -13,6 +13,7 @@ The plugin has been compiled with the R14 sdk and has only been tested with C4D 
 
 ##Installation
 Unzip the folder to your CINEMA/plugins/ folder and restart CINEMA.
+You will have to have a pcl 1.7 installed for this to work currently (I build pcl 1.7 using homebrew)
 
 
 ##Usage
