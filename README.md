@@ -2,7 +2,7 @@
 =============
 Very much work in progress!
 
-This an attempt to integrate pcl pointcloud library into Cinema 4D. Currently the intent is to take a bunch of points and run a fast surface reconstruction from pcl
+This an attempt to integrate pcl pointcloud library into Cinema 4D. Currently the intent is to take a bunch of points and run a fast surface reconstruction from pcl to produce a polygonal object
 
 #[Download](https://github.com/eighteight/Objectify/archive/master.zip)
 ![Screenshot](https://raw.github.com/eighteight/Objectify/master/screenshot.png)
