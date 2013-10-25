@@ -41,7 +41,6 @@ vector<Triangle> Triangulator::triangulate(std::vector<std::vector<float> >& poi
         pt.x = points[i][1];
         pt.y = points[i][2];
     }
-    
 
     pcl::io::loadPolygonFile("plugins/Objectify/bun0.obj",mesh);
     
@@ -69,11 +68,7 @@ vector<Triangle> Triangulator::triangulate(std::vector<std::vector<float> >& poi
     tree2->setInputCloud (cloud_with_normals);
 
     // Initialize objects
-
-
-
-    //
-//    // Set the maximum distance between connected points (maximum edge length)
+    // Set the maximum distance between connected points (maximum edge length)
     gp3.setSearchRadius (0.025);
 
     // Set typical values for the parameters
@@ -86,12 +81,10 @@ vector<Triangle> Triangulator::triangulate(std::vector<std::vector<float> >& poi
     gp3.setMaximumAngle(2*M_PI/3); // 120 degrees
     gp3.setNormalConsistency(false);
 
-//
-//    // Get result
+    // Get result
     gp3.setInputCloud (cloud_with_normals);
 
     gp3.setSearchMethod (tree2);
-
 
     gp3.reconstruct (triangles);
 
@@ -108,16 +101,19 @@ vector<Triangle> Triangulator::triangulate(std::vector<std::vector<float> >& poi
         tr.a[0] = out.points[indx].x;
         tr.a[1] = out.points[indx].y;
         tr.a[2] = out.points[indx].z;
+        tr.index[0] = indx;
         
         indx =  triangles.polygons[t].vertices[1];
         tr.b[0] = out.points[indx].x;
         tr.b[1] = out.points[indx].y;
         tr.b[2] = out.points[indx].z;
+        tr.index[1] = indx;
         
         indx =  triangles.polygons[t].vertices[2];
         tr.c[0] = out.points[indx].x;
         tr.c[1] = out.points[indx].y;
         tr.c[2] = out.points[indx].z;
+        tr.index[2] = indx;
 
         ret.push_back(tr);
     }
@@ -127,14 +123,5 @@ vector<Triangle> Triangulator::triangulate(std::vector<std::vector<float> >& poi
     // Additional vertex information
     std::vector<int> parts = gp3.getPartIDs();
     std::vector<int> states = gp3.getPointStates();
-    std::cout<<&parts<<std::endl;
-    
-    //pcl::visualization::PCLVisualizer& viewer;
-    
-//    viewer.setSize(300, 300);
-//    viewer.addPolygonMesh(triangles, "triangles");
-//      viewer.spin ();
-//    pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZ> rgb (colored_cloud);
-
-    
+    std::cout<<&parts<<std::endl;    
 }

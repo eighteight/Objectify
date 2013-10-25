@@ -12,21 +12,22 @@
 class Triangle {
 
     public:
-    std::vector<float> a, b, c;
+        std::vector<float> a, b, c;
+        std::vector<int> index;
     
-    Triangle():a(std::vector<float>(3,0)), b(std::vector<float>(3,0)), c(std::vector<float>(3,0)){
+    Triangle():a(std::vector<float>(3,0.0)), b(std::vector<float>(3,0.0)), c(std::vector<float>(3,0.0)), index(std::vector<int>(3,0)){
     }
     
 };
 
 inline std::ostream& operator<<(std::ostream& s, const  Triangle &t)
 {
-    s << t.a[0] << " "<< t.a[1]<<" "<< t.a[2]<<std::endl;
-    s << t.b[0] << " "<< t.b[1]<<" "<< t.b[2]<<std::endl;
-    s << t.c[0] << " "<< t.c[1]<<" "<< t.c[2]<<std::endl;
+    s << t.index[0]<<" "<< t.a[0] << " "<< t.a[1]<<" "<< t.a[2]<<std::endl;
+    s << t.index[1]<<" "<< t.b[0] << " "<< t.b[1]<<" "<< t.b[2]<<std::endl;
+    s << t.index[2]<<" "<< t.c[0] << " "<< t.c[1]<<" "<< t.c[2]<<std::endl;
     
     return (s);
-    }
+}
 
 
 #endif

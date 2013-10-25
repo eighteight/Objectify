@@ -133,35 +133,18 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     for (int t = 0; t < triangles.size(); t++) {
         Triangle tr = triangles[t];
         std::cout << tr << std::endl;
-        ppoints[t] = Vector(tr.a[0],tr.a[1],tr.a[2]);
-        ppoints[t+1] = Vector(tr.b[0],tr.b[1],tr.b[2]);
-        ppoints[t+2] = Vector(tr.c[0],tr.c[1],tr.c[2]);
+        ppoints[t+0] = 100.0*Vector(tr.a[0],tr.a[1],tr.a[2]);
+        ppoints[t+1] = 100.0*Vector(tr.b[0],tr.b[1],tr.b[2]);
+        ppoints[t+2] = 100.0*Vector(tr.c[0],tr.c[1],tr.c[2]);
+        myPoly->GetPolygonW()[t] = CPolygon(tr.index[0],tr.index[1],tr.index[2]);
     }
-    
-    int zz = myPoly->GetPolygonCount();
 
     for(LONG i=0; i < myPoly->GetPolygonCount()-1; i++){
-        myPoly->GetPolygonW()[i] = CPolygon(i,i+1,i+2);
+        Triangle t = triangles[i];
+        //myPoly->GetPolygonW()[i] = CPolygon(t.index[0],t.index[1],t.index[2]);
+        //myPoly->GetPolygonW()[i] = CPolygon(i,i+1,i+2);
     }
     return myPoly;
-    
-//    for v in xrange(0,spline.GetSegmentCount(),1):
-//        if v+2 >= spline.GetSegmentCount():
-//            break
-//            pnt = spline.GetSplinePoint(0.5,v)
-//            mypoly.SetPoint(v,pnt)
-//            
-//            pnt = spline.GetSplinePoint(0.5,v+1)
-//            mypoly.SetPoint(v+1,pnt)
-//            
-//            pnt = spline.GetSplinePoint(0.5,v+2)
-//            mypoly.SetPoint(v+2, pnt)
-//            
-//            mypoly.SetPolygon(pInd, c4d.CPolygon(v, v+1, v+2) ) #The Polygon's index, Polygon's points
-//            pInd = pInd+1
-//            
-//            mypoly.Message (c4d.MSG_UPDATE)
-//            mypoly.InsertUnder(parent)
     
     
    BaseObject* chld = NULL;
