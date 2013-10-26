@@ -5,7 +5,6 @@
 #include "lib_splinehelp.h"
 #include "ge_dynamicarray.h"
 #include "octobjectify.h"
-#include "kd_tree.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -51,42 +50,8 @@ Bool Objectify::Init(GeListNode *node)
     data->SetBool(CTTSPOBJECT_REL,TRUE);
     data->SetLong(SPLINEOBJECT_INTERPOLATION,SPLINEOBJECT_INTERPOLATION_ADAPTIVE);
     isCalculated = FALSE;
-    GePrint("Splinify by http://twitter.com/eight_io for Cinema 4D r14");
+    GePrint("Objectify by http://twitter.com/eight_io for Cinema 4D r14");
     return TRUE;
-}
-
-void Objectify::DoRecursion(BaseObject *op, BaseObject *child, GeDynamicArray<Vector> &points, Matrix ml)
-{
-    BaseObject *tp;
-    if (child){
-        tp = child->GetDeformCache();
-        ml = ml * child->GetMl();
-        if (tp){
-            DoRecursion(op,tp,points,ml);
-        }
-        else{
-            tp = child->GetCache(NULL);
-            if (tp){
-                DoRecursion(op,tp,points,ml);
-            }
-            else{
-                
-                if (!child->GetBit(BIT_CONTROLOBJECT)){
-                    if (child->IsInstanceOf(Opoint)){
-                        PointObject * pChild = ToPoint(child);
-                        LONG pcnt = pChild->GetPointCount();
-                        const Vector *childVerts = pChild->GetPointR();
-                        for(LONG i=0;i<pcnt;i++){
-                            points.Push(childVerts[i] * ml);
-                        }
-                    }
-                }
-            }
-        }
-        for (tp = child->GetDown(); tp; tp=tp->GetNext()){
-            DoRecursion(op,tp,points,ml);
-        }
-    }
 }
 
 BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
@@ -114,6 +79,18 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     // check cache for validity and check master object for changes
     Bool dirty = op->CheckCache(hh) || op->IsDirty(DIRTYFLAGS_DATA);
 
+    LONG trck = 0;
+
+    // if child list has been modified
+    if (!dirty) dirty = !op->CompareDependenceList();
+    
+    // mark child objects as processed
+    op->TouchDependenceList();
+    
+    // if no change has been detected, return original cache
+    if (!dirty) return op->GetCache(hh);
+    
+    
     AutoAlloc<SplineHelp> splineHelp;
     
     vector<vector<float> > points;
@@ -126,43 +103,40 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
         points.push_back(point);
     }
     
-    vector<Triangle> triangles = tri.triangulate(points);
-
-    PolygonObject* myPoly = PolygonObject::Alloc( triangles.size()*3,triangles.size());
+    vector<vector<float> > surfacePoints;
+    vector<vector<int> > surfaceIndeces;
+    tri.triangulate(points, surfacePoints, surfaceIndeces);
+    
+    if (surfaceIndeces.size() == 0){
+        return NULL;
+    }
+    
+    PolygonObject* myPoly = PolygonObject::Alloc(surfacePoints.size(),surfaceIndeces.size());
     Vector* ppoints = myPoly->GetPointW();
-    for (int t = 0; t < triangles.size(); t++) {
-        Triangle tr = triangles[t];
-        std::cout << tr << std::endl;
-        ppoints[t+0] = 100.0*Vector(tr.a[0],tr.a[1],tr.a[2]);
-        ppoints[t+1] = 100.0*Vector(tr.b[0],tr.b[1],tr.b[2]);
-        ppoints[t+2] = 100.0*Vector(tr.c[0],tr.c[1],tr.c[2]);
-        myPoly->GetPolygonW()[t] = CPolygon(tr.index[0],tr.index[1],tr.index[2]);
+    vector<float> sp;
+    
+    for (int t = 0; t < surfacePoints.size()-2; t += 3) {
+        
+        sp = surfacePoints[t];
+        ppoints[t+0] = 100.0*Vector(sp[0],sp[1],sp[2]);
+        
+        sp = surfacePoints[t+1];
+        ppoints[t+1] = 100.0*Vector(sp[0],sp[1],sp[2]);
+        
+        sp = surfacePoints[t+2];
+        ppoints[t+2] = 100.0*Vector(sp[0],sp[1],sp[2]);
     }
-
-    for(LONG i=0; i < myPoly->GetPolygonCount()-1; i++){
-        Triangle t = triangles[i];
-        //myPoly->GetPolygonW()[i] = CPolygon(t.index[0],t.index[1],t.index[2]);
-        //myPoly->GetPolygonW()[i] = CPolygon(i,i+1,i+2);
+    
+    for (int t = 0; t < surfaceIndeces.size(); t ++) {
+        myPoly->GetPolygonW()[t] = CPolygon(surfaceIndeces[t][0],surfaceIndeces[t][1],surfaceIndeces[t][2], surfaceIndeces[t][2]);
     }
-    return myPoly;
     
+    return ToPoly(myPoly);
     
-   BaseObject* chld = NULL;
-    LONG trck = 0;
-
-    // if child list has been modified
-    if (!dirty) dirty = !op->CompareDependenceList();
-    
-    // mark child objects as processed
-    op->TouchDependenceList();
-    
-    // if no change has been detected, return original cache
-    if (!dirty) return op->GetCache(hh);
     
     Real maxSeg = data->GetReal(CTTSPOBJECT_MAXSEG,30.);
     Bool relativeMaxSeg  = data->GetBool(CTTSPOBJECT_REL,TRUE);
-    
-    LONG splineInterpolation = data->GetLong(SPLINEOBJECT_INTERPOLATION);
+
     
     BaseThread    *bt=hh->GetThread();
     BaseObject* main = BaseObject::Alloc(Onull);
@@ -191,37 +165,13 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     prvsFrame = crntFrame;
     StatusClear();
     
-    return ToSpline(mcd.result->GetIndex(0L));
-    
-    //        BaseObject *newOp = static_cast<BaseObject*>(mcd.result->GetIndex(0));
-    
-    
-    /////////////////
-    GeDynamicArray<LONG> segments;
-    SplineObject        *pp= SplineObject::Alloc(0,SPLINETYPE_LINEAR);
-    if (!pp) return NULL;
-    pp->ResizeObject(100,segments.GetCount());
-    
-    Segment* seg = pp->GetSegmentW();
-    for(LONG i=0;i<segments.GetCount();i++){
-        seg[i].cnt = segments[i];
-        seg[i].closed = FALSE;
-    }
-    
-    Vector *padr=pp->GetPointW();
-    VLONG j = 0;
-    for (LONG i = 0; i < splineAtPoint.GetCount(); i++){
-        for (LONG k = 0; k < splineAtPoint[i].GetCount(); k++){
-            padr[j++] = splineAtPoint[i][k];
-        }
-    }
+
     
     //////////////////
     
     main->Message(MSG_UPDATE);
     prvsFrame = crntFrame;
     StatusClear();
-    return pp;
     //return main;
 Error:
 

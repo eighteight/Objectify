@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AFA997F8179B7D5500546EC9 /* kd_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA997F2179B7D5500546EC9 /* kd_tree.cpp */; };
-		AFA997F9179B7D5500546EC9 /* kd_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = AFA997F3179B7D5500546EC9 /* kd_tree.h */; };
 		AFA997FA179B7D5500546EC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA997F4179B7D5500546EC9 /* main.cpp */; };
 		AFA997FC179B7D5500546EC9 /* objectify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA997F7179B7D5500546EC9 /* objectify.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
 		E6AAC5A017C547E0005ADAA3 /* c4d_strings.str in Resources */ = {isa = PBXBuildFile; fileRef = E6AAC59D17C547E0005ADAA3 /* c4d_strings.str */; };
@@ -61,11 +59,8 @@
 		6553A1DA0926F00F0034739A /* _api_debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; name = _api_debug.xcconfig; path = ../../resource/_api_lib/_api_debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		6553A1DB0926F00F0034739A /* _api_release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; name = _api_release.xcconfig; path = ../../resource/_api_lib/_api_release.xcconfig; sourceTree = SOURCE_ROOT; };
 		65E51693083D10D0005BFD9A /* objectify.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = objectify.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		AFA997F2179B7D5500546EC9 /* kd_tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kd_tree.cpp; sourceTree = "<group>"; };
-		AFA997F3179B7D5500546EC9 /* kd_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kd_tree.h; sourceTree = "<group>"; };
 		AFA997F4179B7D5500546EC9 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AFA997F7179B7D5500546EC9 /* objectify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objectify.cpp; sourceTree = "<group>"; };
-		AFF450701819D60800FE1750 /* Triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
 		E6AAC59D17C547E0005ADAA3 /* c4d_strings.str */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = c4d_strings.str; sourceTree = "<group>"; };
 		E6AAC59F17C547E0005ADAA3 /* octobjectify.str */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = octobjectify.str; sourceTree = "<group>"; };
 		E6AAC5A317C547F2005ADAA3 /* octobjectify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = octobjectify.h; sourceTree = "<group>"; };
@@ -91,13 +86,10 @@
 			isa = PBXGroup;
 			children = (
 				E6D950701816FB9F00806311 /* c4d_symbols.h */,
-				AFA997F2179B7D5500546EC9 /* kd_tree.cpp */,
-				AFA997F3179B7D5500546EC9 /* kd_tree.h */,
 				AFA997F4179B7D5500546EC9 /* main.cpp */,
 				AFA997F5179B7D5500546EC9 /* object */,
 				E6D950641816DAA700806311 /* Triangulator.cpp */,
 				E6D950651816DAA700806311 /* Triangulator.h */,
-				AFF450701819D60800FE1750 /* Triangle.h */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -184,7 +176,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFA997F9179B7D5500546EC9 /* kd_tree.h in Headers */,
 				E6AAC5A517C547F2005ADAA3 /* octobjectify.h in Headers */,
 				E6D950671816DAA700806311 /* Triangulator.h in Headers */,
 				E6D950711816FB9F00806311 /* c4d_symbols.h in Headers */,
@@ -292,7 +283,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFA997F8179B7D5500546EC9 /* kd_tree.cpp in Sources */,
 				AFA997FA179B7D5500546EC9 /* main.cpp in Sources */,
 				AFA997FC179B7D5500546EC9 /* objectify.cpp in Sources */,
 				E6D950661816DAA700806311 /* Triangulator.cpp in Sources */,

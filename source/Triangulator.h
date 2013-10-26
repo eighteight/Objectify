@@ -9,13 +9,15 @@
 #ifndef __objectify__Triangulator__
 #define __objectify__Triangulator__
 
-#include "Triangle.h"
 
 class Triangulator{
 public:
     Triangulator(){};
     ~Triangulator(){};
-    std::vector<Triangle> triangulate(std::vector<std::vector<float> >&);
+
+    void triangulate(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, std::vector<std::vector<int> >& surfaceIndeces);
+        
+
 
 };
 #endif /* defined(__objectify__Triangulator__) */
