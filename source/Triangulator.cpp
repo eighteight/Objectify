@@ -25,7 +25,7 @@ using namespace std;
     pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
     pcl::PolygonMesh mesh;
 
-void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, vector<vector<int> >& triIndxs, int ksearchNeighbors, float gp3SearchRadius, int gp3MaxNeighbors, float gp3Mu){
+void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, vector<vector<int> >& triIndxs, const int ksearchNeighbors, const float gp3SearchRadius, const int gp3MaxNeighbors, const float gp3Mu){
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud = boost::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
     

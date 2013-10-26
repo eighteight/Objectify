@@ -5,6 +5,7 @@ STRINGTABLE Octobjectify
     CTT_OBJECT_LINK                 "Spline to Objectify";
 	CTTSPOBJECT_REL			        "Relative";
     KSEARCH_NEIGHBORS               "KSearch Neighbors";
+    POSITION_ALONG_SPLINE           "Position along spline, %";
     KSEARCH_MU                      "KSearch Mu";
     TRIANGULATION_MAX_NEIGHBORS     "Triangulation Neighbors";
     TRIANGULATION_MAX_SEARCH_RADIUS "Triangulation Max Search Radius";

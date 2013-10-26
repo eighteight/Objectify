@@ -87,9 +87,10 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     AutoAlloc<SplineHelp> splineHelp;
     
     StatusSetText("Collecting points");
+    float positioAlongSpline = data->GetReal(POSITION_ALONG_SPLINE,0.5);
     vector<vector<float> > points;
     for (LONG i = 0; i < spline->GetSegmentCount(); i++){
-        Vector p = spline->GetSplinePoint(0.5, i);
+        Vector p = spline->GetSplinePoint(positioAlongSpline, i);
         vector<float> point;
         point.push_back(p.x);
         point.push_back(p.y);
@@ -102,6 +103,7 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     ksearchNeighbors= data->GetLong(TRIANGULATION_MAX_NEIGHBORS, 100);
     gp3SearchRadius = data->GetReal(TRIANGULATION_MAX_SEARCH_RADIUS,30.);
     gp3MaxNeighbors = data->GetLong(KSEARCH_NEIGHBORS, 20);
+
     gp3Mu = data->GetReal(KSEARCH_MU, 0.5);
 
     vector<vector<float> > surfacePoints;
