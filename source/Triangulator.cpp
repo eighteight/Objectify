@@ -45,7 +45,7 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::ve
     pcl::io::loadPolygonFile("plugins/Objectify/bun0.obj",mesh);
     
     //pcl::io::loadPolygonFile("/Users/eight/eliot2/eliot2_0000000.obj", mesh);
-    pcl::fromPCLPointCloud2(mesh.cloud, *cloud);
+    //pcl::fromPCLPointCloud2(mesh.cloud, *cloud);
     
     // Normal estimation*
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
