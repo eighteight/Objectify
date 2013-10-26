@@ -13,20 +13,33 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "107"
          endingLineNumber = "107"
-         landmarkName = "Triangulator::triangulate(std::vector&lt;std::vector&lt;float&gt; &gt;&amp; points, std::vector&lt;std::vector&lt;float&gt; &gt;&amp; surfacePoints, vector&lt;vector&lt;int&gt; &gt;&amp; surfaceIndeces)"
+         landmarkName = "Triangulator::triangulate(std::vector&lt;std::vector&lt;float&gt; &gt;&amp; points, std::vector&lt;std::vector&lt;float&gt; &gt;&amp; surfacePoints, vector&lt;vector&lt;int&gt; &gt;&amp; triIndxs, int ksearchNeighbors, float gp3SearchRadius, int gp3MaxNeighbors, float gp3Mu)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "source/Triangulator.cpp"
-         timestampString = "404459642.735023"
+         filePath = "source/object/objectify.cpp"
+         timestampString = "404508505.795977"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
-         landmarkName = "Triangulator::triangulate(std::vector&lt;std::vector&lt;float&gt; &gt;&amp; points, std::vector&lt;std::vector&lt;float&gt; &gt;&amp; surfacePoints, vector&lt;vector&lt;int&gt; &gt;&amp; surfaceIndeces)"
+         startingLineNumber = "102"
+         endingLineNumber = "102"
+         landmarkName = "Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "source/object/objectify.cpp"
+         timestampString = "404510978.672481"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "138"
+         endingLineNumber = "138"
+         landmarkName = "Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

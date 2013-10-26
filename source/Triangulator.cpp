@@ -25,7 +25,7 @@ using namespace std;
     pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
     pcl::PolygonMesh mesh;
 
-void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, vector<vector<int> >& surfaceIndeces){
+void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, vector<vector<int> >& triIndxs, int ksearchNeighbors, float gp3SearchRadius, int gp3MaxNeighbors, float gp3Mu){
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud = boost::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
     
@@ -42,10 +42,10 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::ve
         pt.y = points[i][2];
     }
 
-    //pcl::io::loadPolygonFile("plugins/Objectify/bun0.obj",mesh);
+    pcl::io::loadPolygonFile("plugins/Objectify/bun0.obj",mesh);
     
     //pcl::io::loadPolygonFile("/Users/eight/eliot2/eliot2_0000000.obj", mesh);
-    //pcl::fromPCLPointCloud2(mesh.cloud, *cloud);
+    pcl::fromPCLPointCloud2(mesh.cloud, *cloud);
     
     // Normal estimation*
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
@@ -55,7 +55,7 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::ve
     tree->setInputCloud (cloud);
     n.setInputCloud (cloud);
     n.setSearchMethod (tree);
-    n.setKSearch (20);
+    n.setKSearch (ksearchNeighbors);
     n.compute (*normals);
     //* normals should not contain the point normals + surface curvatures
     
@@ -70,12 +70,12 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::ve
 
     // Initialize objects
     // Set the maximum distance between connected points (maximum edge length)
-    gp3.setSearchRadius (100.025);
+    gp3.setSearchRadius (gp3SearchRadius);
 
     // Set typical values for the parameters
-    gp3.setMu (22.5);
+    gp3.setMu (gp3Mu);
 
-    gp3.setMaximumNearestNeighbors (100);
+    gp3.setMaximumNearestNeighbors (gp3MaxNeighbors);
 
     gp3.setMaximumSurfaceAngle(M_PI/4); // 45 degrees
     gp3.setMinimumAngle(M_PI/18); // 10 degrees
@@ -93,7 +93,7 @@ void Triangulator::triangulate(std::vector<std::vector<float> >& points, std::ve
         ind[0] = triangles.polygons[t].vertices[0];
         ind[1] = triangles.polygons[t].vertices[1];
         ind[2] = triangles.polygons[t].vertices[2];
-        surfaceIndeces.push_back(ind);
+        triIndxs.push_back(ind);
     }
     
     for (int j = 0; j < cloud->points.size(); j++){

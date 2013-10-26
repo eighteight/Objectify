@@ -351,6 +351,10 @@
 					/usr/local/lib/libpcl_kdtree.1.7.0.dylib,
 					/usr/local/lib/libpcl_surface.1.7.0.dylib,
 					/usr/local/lib/libpcl_search.1.7.0.dylib,
+					/usr/local/lib/libpcl_filters.1.7.0.dylib,
+					/usr/local/lib/libpcl_segmentation.1.7.0.dylib,
+					/usr/local/lib/libpcl_sample_consensus.1.7.0.dylib,
+					/usr/local/lib/libpcl_features.1.7.0.dylib,
 				);
 				PRODUCT_NAME = objectify;
 				SKIP_INSTALL = NO;
@@ -419,6 +423,12 @@
 					/usr/local/lib/libpcl_common.1.7.0.dylib,
 					/usr/local/lib/libpcl_io.1.7.0.dylib,
 					/usr/local/lib/libpcl_kdtree.1.7.0.dylib,
+					/usr/local/lib/libpcl_segmentation.1.7.0.dylib,
+					/usr/local/lib/libpcl_filters.1.7.0.dylib,
+					/usr/local/lib/libpcl_features.1.7.0.dylib,
+					/usr/local/lib/libpcl_surface.1.7.0.dylib,
+					/usr/local/lib/libpcl_sample_consensus.1.7.0.dylib,
+					/usr/local/lib/libpcl_search.1.7.0.dylib,
 				);
 				PRODUCT_NAME = cinema4dsdk;
 				SDKROOT = macosx;

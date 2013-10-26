@@ -15,7 +15,7 @@ public:
     Triangulator(){};
     ~Triangulator(){};
 
-    void triangulate(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, std::vector<std::vector<int> >& surfaceIndeces);
+    void triangulate(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, std::vector<std::vector<int> >& triIndxs, int ksearchNeighbors, float gp3SearchRadius, int gp3MaxNeighbors, float gp3Mu);
         
 
 
