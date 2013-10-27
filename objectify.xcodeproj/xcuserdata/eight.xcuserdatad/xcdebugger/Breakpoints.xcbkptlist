@@ -8,38 +8,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "source/Triangulator.cpp"
-         timestampString = "404459600.837234"
+         timestampString = "404603280.547368"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "107"
-         endingLineNumber = "107"
-         landmarkName = "Triangulator::triangulate(std::vector&lt;std::vector&lt;float&gt; &gt;&amp; points, std::vector&lt;std::vector&lt;float&gt; &gt;&amp; surfacePoints, vector&lt;vector&lt;int&gt; &gt;&amp; triIndxs, int ksearchNeighbors, float gp3SearchRadius, int gp3MaxNeighbors, float gp3Mu)"
+         startingLineNumber = "76"
+         endingLineNumber = "76"
+         landmarkName = "Triangulator::computeSurface(std::vector&lt;std::vector&lt;float&gt; &gt;&amp; points, std::vector&lt;std::vector&lt;float&gt; &gt;&amp; surfacePoints, vector&lt;vector&lt;int&gt; &gt;&amp; triIndxs, const int ksearchNeighbors, const float gp3SearchRadius, const int gp3MaxNeighbors, const float gp3Mu, bool useMls)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "source/object/objectify.cpp"
-         timestampString = "404513606.051005"
+         filePath = "source/Triangulator.cpp"
+         timestampString = "404603280.547368"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "103"
-         endingLineNumber = "103"
-         landmarkName = "Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "source/object/objectify.cpp"
-         timestampString = "404513606.051005"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "140"
-         endingLineNumber = "140"
-         landmarkName = "Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)"
+         startingLineNumber = "54"
+         endingLineNumber = "54"
+         landmarkName = "Triangulator::computeSurface(std::vector&lt;std::vector&lt;float&gt; &gt;&amp; points, std::vector&lt;std::vector&lt;float&gt; &gt;&amp; surfacePoints, vector&lt;vector&lt;int&gt; &gt;&amp; triIndxs, const int ksearchNeighbors, const float gp3SearchRadius, const int gp3MaxNeighbors, const float gp3Mu, bool useMls)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -16,7 +16,6 @@ class Objectify : public ObjectData
 {
 private:
     LineObject *PrepareSingleSpline(BaseObject *generator, BaseObject *op, Matrix *ml, HierarchyHelp *hh, Bool *dirty);
-    void Transform(PointObject *op, const Matrix &m);
     void DoRecursion(BaseObject *op, BaseObject *child, GeDynamicArray<Vector> &points, Matrix ml);
     int ksearchNeighbors;
     float gp3SearchRadius;
@@ -24,23 +23,13 @@ private:
     float gp3Mu;
     GeDynamicArray<GeDynamicArray<Vector> > splineAtPoint;
     Triangulator tri;
+    LONG prevFrame;
 public:
     virtual BaseObject* GetVirtualObjects(BaseObject *op, HierarchyHelp *hh);
     virtual Bool Init(GeListNode *node);
     
     static NodeData *Alloc(void) { return gNew Objectify; }
 };
-
-void Objectify::Transform(PointObject *op, const Matrix &m)
-{
-    Vector        *padr=op->GetPointW();
-    LONG        pcnt=op->GetPointCount(),i;
-    
-    for (i=0; i<pcnt; i++)
-        padr[i]*=m;
-    
-    op->Message(MSG_UPDATE);
-}
 
 Bool Objectify::Init(GeListNode *node)
 {
@@ -50,6 +39,7 @@ Bool Objectify::Init(GeListNode *node)
     data->SetReal(TRIANGULATION_MAX_SEARCH_RADIUS,30.);
 
     GePrint("Objectify by http://twitter.com/eight_io for Cinema 4D r14");
+    prevFrame = 0;
     return TRUE;
 }
 
@@ -58,7 +48,7 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     BaseDocument *doc = op->GetDocument();
     BaseContainer *data = op->GetDataInstance();
     BaseObject* obj = (BaseObject*)data->GetLink(CTT_OBJECT_LINK,doc,Obase);
-
+    LONG crntFrame = doc->GetTime().GetFrame(doc->GetFps());
     if (!obj) return NULL;
     
     if (obj->GetType() != Ospline){
@@ -75,19 +65,22 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     
     // mark child objects as processed
     op->TouchDependenceList();
-    
+
+    dirty = dirty || (prevFrame != crntFrame);
+    prevFrame = crntFrame;
     // if no change has been detected, return original cache
     if (!dirty) return op->GetCache(hh);
     
     SplineObject* spline = (SplineObject*) obj;
     
-    LONG crntFrame = doc->GetTime().GetFrame(doc->GetFps());
-
-    
     AutoAlloc<SplineHelp> splineHelp;
     
     StatusSetText("Collecting points");
     float positioAlongSpline = data->GetReal(POSITION_ALONG_SPLINE,0.5);
+    positioAlongSpline /= 10000.0f;
+    positioAlongSpline = positioAlongSpline > 1.0 ? 1.0: positioAlongSpline;
+    positioAlongSpline = positioAlongSpline < 0.0 ? 0.0: positioAlongSpline;
+    cout<<positioAlongSpline<<endl;
     vector<vector<float> > points;
     for (LONG i = 0; i < spline->GetSegmentCount(); i++){
         Vector p = spline->GetSplinePoint(positioAlongSpline, i);
@@ -110,19 +103,23 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     vector<vector<int> > triIndxs;
     StatusSetBar(0);
     StatusSetText("Triangulating");
-    tri.triangulate(points, surfacePoints, triIndxs, ksearchNeighbors, gp3SearchRadius, gp3MaxNeighbors, gp3Mu);
+    
+    bool useMls = data->GetBool(USE_MLS, false);
+
+    tri.computeSurface(points, surfacePoints, triIndxs, ksearchNeighbors, gp3SearchRadius, gp3MaxNeighbors, gp3Mu, useMls);
+
     StatusSetBar(100);
     StatusSetText("Got "+LongToString(triIndxs.size())+" triangles");
+
     if (triIndxs.size() == 0){
         return NULL;
     }
     
     PolygonObject* myPoly = PolygonObject::Alloc(surfacePoints.size(),triIndxs.size());
     Vector* ppoints = myPoly->GetPointW();
-    vector<float> sp;
     
+    vector<float> sp;
     for (int t = 0; t < surfacePoints.size()-2; t += 3) {
-        
         sp = surfacePoints[t];
         ppoints[t+0] = Vector(sp[0],sp[1],sp[2]);
         
@@ -134,21 +131,16 @@ BaseObject *Objectify::GetVirtualObjects(BaseObject *op, HierarchyHelp *hh)
     }
     
     for (int t = 0; t < triIndxs.size(); t ++) {
-        myPoly->GetPolygonW()[t] = CPolygon(triIndxs[t][0],triIndxs[t][1],triIndxs[t][2], triIndxs[t][2]);
+        myPoly->GetPolygonW()[t] = CPolygon(triIndxs[t][0], triIndxs[t][1], triIndxs[t][2], triIndxs[t][2]);
     }
     
     StatusClear();
     myPoly->Message(MSG_UPDATE);
     return ToPoly(myPoly);
-    
-    
 
-
-    
-    BaseThread    *bt=hh->GetThread();
+    BaseThread* bt=hh->GetThread();
     BaseObject* main = BaseObject::Alloc(Onull);
 
-    
     SplineObject* emptySpline = SplineObject::Alloc(0, SPLINETYPE_LINEAR);
     ModelingCommandData mcd;
     

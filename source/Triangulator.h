@@ -14,8 +14,8 @@ class Triangulator{
 public:
     Triangulator(){};
     ~Triangulator(){};
-
-    void triangulate(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, std::vector<std::vector<int> >& triIndxs, const int ksearchNeighbors, const float gp3SearchRadius, const int gp3MaxNeighbors, const float gp3Mu);
+    
+    void computeSurface(std::vector<std::vector<float> >& points, std::vector<std::vector<float> >& surfacePoints, std::vector<std::vector<int> >& triIndxs, const int ksearchNeighbors, const float gp3SearchRadius, const int gp3MaxNeighbors, const float gp3Mu, bool useMls);
 
 };
 #endif /* defined(__objectify__Triangulator__) */
